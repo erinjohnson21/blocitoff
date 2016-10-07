@@ -3,7 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://www.gstatic.com/firebasejs/3.4.1/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.4.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.4.1/firebase-auth.js"></script>
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
 
 
@@ -31,6 +32,18 @@
       To create a production bundle, use `npm run build`.
     -->
   </body>
-
+  
+  <script src="https://www.gstatic.com/firebasejs/3.4.1/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyCCqXrGQJfbECB3oM5HREOYKwL44NhFm-8",
+      authDomain: "todo-c4290.firebaseapp.com",
+      databaseURL: "https://todo-c4290.firebaseio.com",
+      storageBucket: "todo-c4290.appspot.com",
+      messagingSenderId: "213946233863"
+    };
+    firebase.initializeApp(config);
+  </script>
 
 </html>

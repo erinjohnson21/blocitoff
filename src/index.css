@@ -7,7 +7,7 @@ body {
   font-family: sans-serif;
   background-color: #808080;
 }
-.todoListMain-container {
+.todoListMain {
   min-height: 200px;
   margin: 0 auto;
   width: 400px;
@@ -18,7 +18,7 @@ body {
 .header {
   font-size: 18px;
   font-weight: 300;
-  padding-bottom: 20px;
+  padding-bottom: 70px;
 }
 .header h1 {
   margin: 0;
@@ -54,4 +54,18 @@ body {
   margin-top: 21px;
   margin-right: 15px;
   font-size: 15px;
+}
+.todoListMain .theList {
+  list-style: none;
+  padding-left: 0;
+  font-size: 20px;
+  font-weight: 300;
+  padding-bottom: 20px;
+}
+.todoListMain .theList li {
+  background-color: white;
+  width: 350px;
+  margin: 0 auto;
+  padding: 10px;
+  margin-bottom: 20px;
 }

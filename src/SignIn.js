@@ -1,4 +1,4 @@
-import React from 'react';
+//import React from 'react';
 
 
 // firebase.auth().signInWithEmailAndPassword('erin@erinelizabethjohnson.com', 'monkeyisabadpassword').catch(function(error) {

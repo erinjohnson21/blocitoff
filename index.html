@@ -52,14 +52,14 @@
     console.log(error);
   });
 
-  firebase.auth().onAuthStateChanged(function(user) {
+    firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       firebase.database().ref('todos').push({
-        text: 'sample text',
-        time: Date.now(),
-        user: user.email,
-      })
-;  } else {
+        // text: 'sample text',
+        // time: Date.now(),
+        // user: user.email,
+      });
+    } else {
       console.log('not signed in');
     }
   });

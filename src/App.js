@@ -38,7 +38,7 @@ import List from './List';
 
 class App extends Component {
 
-  componentDidMount() {
+  componentWillMount() {
     const rootRef = firebase.database().ref().child('todos');
   }
 

@@ -4,24 +4,31 @@ import TodoItems from './TodoItems';
 var List = React.createClass({
   getInitialState: function () {
     return {
-      items: []
+      items: [],
     };
   },
 
   addItem: function (e) {
+    e.preventDefault();
+
     var itemArray = this.state.items;
 
     itemArray.push({
       text: this.inputElement.value,
       key: Date.now()
-    }
-  );
+      }
+    );
 
-    this.setState({items: itemArray});
+    //I think I messed up something here...
+    this.setState({
+      items: itemArray,
+      text: this.inputElement.value,
+      key: Date.now()
+    });
 
     this.inputElement.value="";
 
-    e.preventDefault();
+
   },
 
   render: function () {
@@ -39,7 +46,7 @@ var List = React.createClass({
           </form>
         </div>
         <div>
-          <TodoItems entries={this.state.items}/>
+          <TodoItems entries={this.state.items} />
         </div>
       </div>
     );

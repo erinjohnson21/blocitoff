@@ -1,6 +1,7 @@
+
 import React, { Component } from 'react';
-import * as firebase from 'firebase';
-import logo from './logo.svg';
+import firebase from 'firebase';
+import ReactFireMixin from 'reactfire';
 import './App.css';
 import List from './List';
 // import SignIn from './SignIn';
@@ -25,11 +26,12 @@ import List from './List';
 
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
-      firebase.database().ref('todos').push({
-        // text: 'blah blah',
-        // time: Date.now(),
-        // user: user.email,
-      });
+      window.user = user;
+      console.log(window.user);
+      // firebase.database().ref('todos').push({
+        //Push items from list.js?
+
+      // });
     } else {
       console.log('not signed in');
     }
@@ -37,26 +39,23 @@ import List from './List';
 
 
 
-class App extends Component {
+const App = React.createClass({
+  mixins: [ReactFireMixin],
 
   componentWillMount() {
-    const rootRef = firebase.database().ref().child('todos');
-  }
+    this.rootRef = firebase.database().ref('todos');
+    this.bindAsArray(this.rootRef.limitToLast(25), 'todos');
+  },
 
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload ok.
-        </p>
-        <List/>
+        <List firebaseRef={this.rootRef}/>
       </div>
     );
   }
-}
+})
+
+
 
 export default App;

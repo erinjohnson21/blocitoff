@@ -1,7 +1,6 @@
 
 import React, { Component } from 'react';
 import firebase from 'firebase';
-import ReactFireMixin from 'reactfire';
 import './App.css';
 import List from './List';
 // import SignIn from './SignIn';
@@ -40,11 +39,9 @@ import List from './List';
 
 
 const App = React.createClass({
-  mixins: [ReactFireMixin],
 
   componentWillMount() {
     this.rootRef = firebase.database().ref('todos');
-    this.bindAsArray(this.rootRef.limitToLast(25), 'todos');
   },
 
   render() {

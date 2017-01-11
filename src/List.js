@@ -1,11 +1,18 @@
 import React from 'react';
+import ReactFireMixin from 'reactfire';
 import TodoItems from './TodoItems';
 
 var List = React.createClass({
+  mixins: [ReactFireMixin],
+
   getInitialState: function () {
     return {
-      items: [],
+      items: []
     };
+  },
+
+  componentWillMount: function () {
+    this.bindAsArray(this.props.firebaseRef.limitToLast(25), 'items');
   },
 
   addItem: function (e) {
@@ -13,22 +20,12 @@ var List = React.createClass({
 
     var itemArray = this.state.items;
 
-    itemArray.push({
-      text: this.inputElement.value,
-      key: Date.now()
-      }
-    );
-
-    //I think I messed up something here...
-    this.setState({
-      items: itemArray,
+    this.props.firebaseRef.push({
       text: this.inputElement.value,
       key: Date.now()
     });
 
     this.inputElement.value="";
-
-
   },
 
   render: function () {

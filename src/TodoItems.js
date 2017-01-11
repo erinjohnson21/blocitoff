@@ -2,7 +2,7 @@ import React from 'react';
 
 var TodoItems = React.createClass({
   render: function() {
-    var todoEntries = this.props.entries;
+    var todoEntries = this.props.entries.reverse();
 
     function createTasks(item) {
       return <li key={item.key}>{item.text}</li>

@@ -1,12 +1,21 @@
 import React from 'react';
 
 var TodoItems = React.createClass({
-  render: function() {
-    var todoEntries = this.props.entries;
+  toggleComplete: function(item) {
     var firebaseRef = this.props.firebaseRef;
+    firebaseRef.child('/'+ item['.key']).update({completed: !item.completed});
+  },
+  render: function() {
+    var self = this;
+    var todoEntries = this.props.entries;
 
     function createTasks(item) {
-      return <li key={item.key} onClick={() => firebaseRef.child('-K_zejp3DEbLqVBJd9Ih').update({completed: !!item.completed})}>{item.text}</li>
+      return <li
+        key={item.key}
+        onClick={self.toggleComplete.bind(null, item)}
+        style={{textDecoration: item.completed ? 'line-through' : 'none'}}>
+          {item.text}
+        </li>;
     }
 
     var listItems = todoEntries.map(createTasks);

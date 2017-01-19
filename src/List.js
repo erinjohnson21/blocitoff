@@ -20,7 +20,7 @@ var List = React.createClass({
   addItem: function (e) {
     e.preventDefault();
 
-    var itemArray = this.state.items;
+    // var itemArray = this.state.items;
 
     this.props.firebaseRef.push({
       text: this.inputElement.value,
@@ -44,7 +44,6 @@ var List = React.createClass({
   },
 
   render: function () {
-    console.log(this.state.show);
     return (
       <div className="todoListMain">
         <div className="header">

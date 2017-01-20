@@ -66,6 +66,18 @@ body {
   background-color: white;
   width: 350px;
   margin: 0 auto;
-  padding: 10px;
+  height: 40px;
   margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 20px;
+}
+.remove-item {
+  width: 50px;
+  height: 40px;
+  background: #ff0066;
+  border-radius: none;
+  color: white;
+  float: right;
 }

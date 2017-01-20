@@ -27,10 +27,7 @@ import List from './List';
     if (user) {
       window.user = user;
       console.log(window.user);
-      // firebase.database().ref('todos').push({
-        //Push items from list.js?
-
-      // });
+      
     } else {
       console.log('not signed in');
     }

@@ -20,8 +20,6 @@ var List = React.createClass({
   addItem: function (e) {
     e.preventDefault();
 
-    // var itemArray = this.state.items;
-
     this.props.firebaseRef.push({
       text: this.inputElement.value,
       key: Date.now()

@@ -1,30 +1,50 @@
 import React from 'react';
+import ReactFireMixin from 'reactfire';
 import TodoItems from './TodoItems';
+import moment from 'moment';
 
 var List = React.createClass({
+  mixins: [ReactFireMixin],
+
   getInitialState: function () {
     return {
-      items: []
+      items: [],
+      show: 'all',
     };
   },
 
+  componentWillMount: function () {
+    this.bindAsArray(this.props.firebaseRef.limitToLast(25), 'items');
+  },
+
   addItem: function (e) {
+    e.preventDefault();
+
     var itemArray = this.state.items;
 
-    itemArray.push({
+    this.props.firebaseRef.push({
       text: this.inputElement.value,
       key: Date.now()
-    }
-  );
-
-    this.setState({items: itemArray});
+    });
 
     this.inputElement.value="";
+  },
 
-    e.preventDefault();
+  getItems: function () {
+    if (this.state.show === 'expired') {
+      return this.state.items.filter(function (item) {
+        return moment(item.key).isBefore(moment().subtract(7, 'd'));
+      });
+    } else if (this.state.show === 'completed') {
+      return this.state.items.filter(function (item) {
+        return item.completed;
+      });
+    }
+    return this.state.items;
   },
 
   render: function () {
+    console.log(this.state.show);
     return (
       <div className="todoListMain">
         <div className="header">
@@ -34,12 +54,13 @@ var List = React.createClass({
               className="task" placeholder="Enter Task">
             </input><br/>
             <button type="submit">Add Task</button>
-            <a className="link" href="#">Expired Tasks</a>
-            <a className="link" href="#">Completed Tasks</a>
+            <a className="link" href="#" onClick={() => this.setState({show: 'all'})}>All</a>
+            <a className="link" href="#" onClick={() => this.setState({show: 'expired'})}>Expired Tasks</a>
+            <a className="link" href="#" onClick={() => this.setState({show: 'completed'})}>Completed Tasks</a>
           </form>
         </div>
         <div>
-          <TodoItems entries={this.state.items}/>
+          <TodoItems entries={this.getItems()} firebaseRef={this.props.firebaseRef} />
         </div>
       </div>
     );

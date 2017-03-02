@@ -22,7 +22,7 @@ var List = React.createClass({
 
     this.props.firebaseRef.push({
       text: this.inputElement.value,
-      key: Date.now()
+      key: Date.now(),
     });
 
     this.inputElement.value="";
@@ -40,9 +40,14 @@ var List = React.createClass({
     }
     return this.state.items;
   },
+  logout: function() {
+    this.props.rootRef.auth().signOut();
+  },
 
   render: function () {
     return (
+      <div>
+      <button className="logout btn" onClick={this.logout}>Logout</button>
       <div className="todoListMain">
         <div className="header">
           <h1>Things to Do</h1>
@@ -50,7 +55,7 @@ var List = React.createClass({
             <input ref={(a) => this.inputElement = a}
               className="task" placeholder="Enter Task">
             </input><br/>
-            <button type="submit">Add Task</button>
+            <button type="submit" className="btn">Add Task</button>
             <a className="link" href="#" onClick={() => this.setState({show: 'all'})}>All</a>
             <a className="link" href="#" onClick={() => this.setState({show: 'expired'})}>Expired Tasks</a>
             <a className="link" href="#" onClick={() => this.setState({show: 'completed'})}>Completed Tasks</a>
@@ -59,6 +64,7 @@ var List = React.createClass({
         <div>
           <TodoItems entries={this.getItems()} firebaseRef={this.props.firebaseRef} />
         </div>
+      </div>
       </div>
     );
   }

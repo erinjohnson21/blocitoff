@@ -22,7 +22,7 @@ var TodoItems = React.createClass({
         onClick={self.toggleComplete.bind(null, item)}
         style={{textDecoration: item.completed ? 'line-through' : 'none'}}>
           {item.text}
-        <button className="remove-item" onClick= {(e) => self.remove(e, item)}>X</button>
+        <button className="remove-item" onClick={(e) => self.remove(e, item)}>X</button>
         </li>
       )
     }

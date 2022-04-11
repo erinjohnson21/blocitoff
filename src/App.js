@@ -12,6 +12,8 @@ var config = {
   databaseURL: "https://todo-c4290.firebaseio.com",
   storageBucket: "todo-c4290.appspot.com",
   messagingSenderId: "213946233863"
+  appId: "1:213946233863:web:b8dea1b11d8208e7f426a2",
+  measurementId: "G-5QMPYQ3WFK"
 };
 firebase.initializeApp(config);
 
